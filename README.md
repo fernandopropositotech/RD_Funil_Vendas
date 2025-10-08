@@ -29,3 +29,24 @@ Exemplo:
 
 ## Autor
 Fernando Caruzo
+import pandas as pd
+
+# 1. Ler a base de dados
+df = pd.read_csv("dados.csv")
+
+# 2. Mostrar as primeiras linhas para conferir
+print("Visualizando os primeiros registros:")
+print(df.head())
+
+# 3. Contar quantos registros existem em cada etapa
+etapas = df['etapa'].value_counts()
+print("\nQuantidade de contatos por etapa:")
+print(etapas)
+
+# 4. Calcular taxa de conversão de cada etapa
+print("\nTaxas de conversão:")
+total_inicial = etapas.sum()
+for etapa, qtd in etapas.items():
+    taxa = (qtd / total_inicial) * 100
+    print(f"{etapa}: {taxa:.2f}% do total")
+
